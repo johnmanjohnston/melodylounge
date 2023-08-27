@@ -1,0 +1,20 @@
+.navbar-menu-links ul li {
+    margin: 0em 1em;
+    letter-spacing: 1px;
+}
+
+.navbar-brand {
+    margin-left: 1em;
+}
+
+.ml-bg {
+    background: #171717;
+}
+
+.ml-bg-navbar {
+    background: #0C0C0C;
+}
+
+.ml-text {
+    color: whitesmoke;
+}
