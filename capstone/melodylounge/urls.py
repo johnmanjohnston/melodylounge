@@ -6,7 +6,10 @@ urlpatterns = [
     path("register", views.register, name="register"),
     path("logout", views.logout_user, name="logout"),
     path("login", views.log_in_user, name="login"),
-    path("publish", views.publish, name="publish")
+    path("publish", views.publish, name="publish"),
+
+    # APIs
+    path("all_songs", views.all_songs, name="all_songs")
 ]
 
 from django.conf import settings

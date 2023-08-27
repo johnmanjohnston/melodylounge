@@ -118,6 +118,7 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 MEDIA_URL = "media/"
+SONG_DESTINATION_DIR = str(BASE_DIR) + "\songs\\"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field

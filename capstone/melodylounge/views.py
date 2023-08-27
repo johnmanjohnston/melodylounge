@@ -1,19 +1,18 @@
 from django.shortcuts import render
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse, JsonResponse, HttpResponseRedirect
 from django.db import IntegrityError
 from django.shortcuts import render
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 import django.forms
 from django.conf import settings
+import json
 
 from django.contrib.auth import login, logout, authenticate
 
 from .models import *
 
 # Create your views here.
-
-SONG_DESTINATION_DIR = settings.MEDIA_ROOT + "songs/"
 
 @login_required(login_url="/login")
 def index(request): 
@@ -75,7 +74,7 @@ def save_audio_file(user_id, song_title, explicit, f):
     song = Song(author=author, title=song_title, explicit=explicit)
     song.save()
 
-    with open(SONG_DESTINATION_DIR + str(song.id) + ".wav", "wb+") as destination:
+    with open(settings.SONG_DESTINATION_DIR + str(song.id) + ".wav", "wb+") as destination:
         for chunk in f.chunks():
             destination.write(chunk)
 
@@ -90,3 +89,8 @@ def publish(request):
         return HttpResponse("post request recieved")
     else:
         return render(request, "melodylounge/publish.html")
+    
+# APIs
+def all_songs(request):
+    songs = ([song.serialize() for song in Song.objects.all()])
+    return JsonResponse(songs, safe=False)
