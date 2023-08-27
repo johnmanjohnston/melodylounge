@@ -18,3 +18,27 @@
 .ml-text {
     color: whitesmoke;
 }
+
+#audio-controller-wrapper audio {
+    width: 100vw;
+    filter: invert(180%);
+    font-size: 5em;
+}
+
+#audio-controller-wrapper {
+    position: absolute;
+    bottom: 0;
+}
+
+audio::-webkit-media-controls-enclosure {
+    border-radius: 0;
+}
+
+audio::-webkit-media-controls-current-time-display,
+audio::-webkit-media-controls-time-remaining-display {
+    font-size: 1.5em;
+}
+
+audio::-webkit-media-controls-play-button {
+    transform: scale(1.25);
+}

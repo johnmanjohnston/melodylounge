@@ -9,7 +9,9 @@ urlpatterns = [
     path("publish", views.publish, name="publish"),
 
     # APIs
-    path("all_songs", views.all_songs, name="all_songs")
+    path("all_songs", views.all_songs, name="all_songs"),
+    path("search_songs/<str:query>", views.search_songs, name="search_songs"),
+    path("songs_by_author/<str:author_name>", views.songs_by_author, name="songs_by_author"),
 ]
 
 from django.conf import settings

@@ -16,7 +16,9 @@ from .models import *
 
 @login_required(login_url="/login")
 def index(request): 
-    return render(request, "melodylounge/index.html")
+    return render(request, "melodylounge/index.html", {
+        "hide_music_player": False
+    })
 
 def logout_user(request):
     logout(request)
@@ -88,9 +90,33 @@ def publish(request):
             return HttpResponse("Song saved")
         return HttpResponse("post request recieved")
     else:
-        return render(request, "melodylounge/publish.html")
+        return render(request, "melodylounge/publish.html", {
+            "hide_music_player": True
+        })
     
+def search(request):
+    return render(request, "melodylounge/search.html") 
+
+
 # APIs
 def all_songs(request):
     songs = ([song.serialize() for song in Song.objects.all()])
     return JsonResponse(songs, safe=False)
+
+def search_songs(request, query):
+    songs = []
+    query = str(query).lower()
+
+    for song in Song.objects.all():
+        if query == song.title.lower() or query in song.title.lower():
+            songs.append(song)
+
+    return JsonResponse([song.serialize() for song in songs], safe=False)
+
+def songs_by_author(request, author_name):
+    try:
+        user = User.objects.all().filter(username=author_name)[0]
+        songs = Song.objects.all().filter(author=user)
+
+        return JsonResponse([song.serialize() for song in songs], safe=False)
+    except IndexError: return JsonResponse([], safe=False)

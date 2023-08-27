@@ -1,7 +1,28 @@
 {% extends "melodylounge/layout.html" %}
 
 {% block body %}
-<h1>This is index.</h1>
+<div id="search-tab">
+    <h1>Search</h1>
+<hr>
+    <form id="search-form">
+        <label>Title</label>
+        <input type="text" name="search_query" id=""> <br><br>
+    </form>
 
-<audio src="/media/songs/4.wav" controls></audio>
+    <div id="songs-display">
+
+    </div>
+
+    <script src="/static/melodylounge/search.js"></script>
+</div>
+
+<div id="playlists-tab">
+    <h1>Playlists</h1>
+    <hr>
+</div>
+
+<div id="audio-controller-wrapper">
+    <audio controls id="audio-player" controlsList="nodownload noplaybackrate"></audio>
+</div>
+
 {% endblock %}
