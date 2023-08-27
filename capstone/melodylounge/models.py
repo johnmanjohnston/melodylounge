@@ -45,3 +45,10 @@ class Playlist(models.Model):
     author = models.ForeignKey(User, models.CASCADE)
     title = models.CharField(max_length=64)
     songs = models.ManyToManyField("Song", blank=True)
+
+    def serialize(self):
+        return {
+            "id": self.id,
+            "title": self.title,
+            "song_count": len(self.songs.all())
+        }

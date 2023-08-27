@@ -18,7 +18,7 @@ searchForm.addEventListener("submit", (ev) => {
         console.log(htmlValues)
 
         if (htmlValues.length === 0) {
-            songsDispaly.innerHTML = "No songs"
+            songsDispaly.innerHTML = "No results"
         }
 
         htmlValues.forEach(htmlValue => {

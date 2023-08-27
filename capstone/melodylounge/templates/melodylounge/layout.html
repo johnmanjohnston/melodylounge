@@ -17,16 +17,16 @@
           <ul class="navbar-nav mr-auto">
             {% if user.is_authenticated and hide_music_player != True %}
             <li class="nav-item">
-                <a class="nav-link" href="">MY PROFILE - {{ user.username|upper }}</a>
+                <div onclick="showProfile('{{ user.username }}')" class="nav-link">MY PROFILE - {{ user.username|upper }}</div>
             </li>
             {% endif %}
 
             {% if hide_music_player is False %}
-            <li class="nav-item">
+            <li class="nav-item" style="cursor: pointer;">
                 <div onclick="showTab('search-tab')" class="nav-link">SEARCH</div>
             </li>
 
-            <li class="nav-item">
+            <li class="nav-item" style="cursor: pointer;">
                 <div onclick="showTab('playlists-tab')" class="nav-link" href="">PLAYLISTS</div>
             </li>
             

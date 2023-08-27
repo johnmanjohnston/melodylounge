@@ -120,3 +120,18 @@ def songs_by_author(request, author_name):
 
         return JsonResponse([song.serialize() for song in songs], safe=False)
     except IndexError: return JsonResponse([], safe=False)
+
+# Playlist APIs
+def get_songs_by_playlist_id(request, id):
+    playlist = Playlist(id=id)
+    songs = playlist.songs.all()
+
+    return JsonResponse([song.serialize() for song in songs], safe=False)
+
+def get_playlists_by_user(request, username):
+    try:
+        user = User.objects.all().filter(username=username)[0]
+        playlists = Playlist.objects.all().filter(author=user)
+        return JsonResponse([playlist.serialize() for playlist in playlists], safe=False)
+    except IndexError:
+        return JsonResponse([], safe=False)

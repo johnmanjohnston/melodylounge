@@ -12,6 +12,8 @@ urlpatterns = [
     path("all_songs", views.all_songs, name="all_songs"),
     path("search_songs/<str:query>", views.search_songs, name="search_songs"),
     path("songs_by_author/<str:author_name>", views.songs_by_author, name="songs_by_author"),
+    path("get_song_by_playlist_id/<int:id>", views.get_songs_by_playlist_id, name="get_song_by_playlist_id"),
+    path("get_playlists_by_user/<str:username>", views.get_playlists_by_user, name="get_playlists_by_user"),
 ]
 
 from django.conf import settings

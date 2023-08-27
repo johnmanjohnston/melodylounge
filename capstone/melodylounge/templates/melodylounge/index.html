@@ -1,28 +1,36 @@
 {% extends "melodylounge/layout.html" %}
 
 {% block body %}
-<div id="search-tab">
+<div id="search-tab" class="tab">
     <h1>Search</h1>
 <hr>
     <form id="search-form">
-        <label>Title</label>
-        <input type="text" name="search_query" id=""> <br><br>
+        <input type="text" name="search_query" id="search-box" placeholder="Search for a song here"> 
+        <input type="submit" value="Search">
     </form>
-
-    <div id="songs-display">
-
-    </div>
-
-    <script src="/static/melodylounge/search.js"></script>
 </div>
 
-<div id="playlists-tab">
+<div id="playlists-tab" class="tab">
     <h1>Playlists</h1>
     <hr>
+    <h1>My Playlists</h1>
+    <div id="my-playlists-container"></div>
 </div>
+
+<div id="profile-tab" class="tab">
+    <h1 id="profile-name">Profile:</h1>
+</div>
+
+<div id="songs-display">
+</div>
+
 
 <div id="audio-controller-wrapper">
     <audio controls id="audio-player" controlsList="nodownload noplaybackrate"></audio>
 </div>
 
+<script>const USERNAME = "{{ user.username }}"</script>
+<script src="/static/melodylounge/search.js"></script>
+<script src="/static/melodylounge/profile.js"></script>
+<script src="/static/melodylounge/playlist.js"></script>
 {% endblock %}

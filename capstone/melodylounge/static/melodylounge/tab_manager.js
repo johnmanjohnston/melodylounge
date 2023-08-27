@@ -1,4 +1,4 @@
-var tabs = ["search-tab", "playlists-tab"]
+var tabs = ["search-tab", "playlists-tab", "profile-tab"]
 
 function hideAlTabs() {
     tabs.forEach(tab => {
@@ -7,6 +7,8 @@ function hideAlTabs() {
 }
 
 function showTab(tabName) {
+    songsDispaly.innerHTML = "";
+
     tabs.forEach(tab => {
         document.querySelector(`#${tab}`).style.display = "none";
     });
