@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.http import HttpResponse, JsonResponse, HttpResponseRedirect
+from django.http import HttpResponse, JsonResponse, HttpResponseRedirect, HttpResponseForbidden
 from django.db import IntegrityError
 from django.shortcuts import render
 from django.urls import reverse
@@ -135,3 +135,19 @@ def get_playlists_by_user(request, username):
         return JsonResponse([playlist.serialize() for playlist in playlists], safe=False)
     except IndexError:
         return JsonResponse([], safe=False)
+
+def add_song_to_playlist(request):
+    json_data = json.loads(request.body)
+
+    song_id =     int(json_data["song_id"])
+    playlist_id = int(json_data["playlist_id"])
+
+    playlist = Playlist.objects.all().filter(id=playlist_id)[0]
+
+    if request.user.id != playlist.author.id:
+        return HttpResponseForbidden()
+    
+    song = Song.objects.get(id=song_id)
+
+    playlist.songs.add(song)
+    return HttpResponse("Song added successfully")

@@ -21,6 +21,8 @@
     <h1 id="profile-name">Profile:</h1>
 </div>
 
+<div id="songs-in-playlist-tab" class="tab"></div>
+
 <div id="songs-display">
 </div>
 
@@ -29,7 +31,7 @@
     <audio controls id="audio-player" controlsList="nodownload noplaybackrate"></audio>
 </div>
 
-<script>const USERNAME = "{{ user.username }}"</script>
+<script>const USERNAME = "{{ user.username }}"; const CSRF_TOKEN = "{{ csrf_token }}"</script>
 <script src="/static/melodylounge/search.js"></script>
 <script src="/static/melodylounge/profile.js"></script>
 <script src="/static/melodylounge/playlist.js"></script>

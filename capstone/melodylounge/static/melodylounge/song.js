@@ -1,4 +1,17 @@
+const SONGS_DISPLAY = document.querySelector("#songs-display")
+
+/*var usersPlaylists = {};
+
+function updatePlaylistsByUser() {
+    fetch(`get_playlists_by_user/${USERNAME}`).then(response => response.json()).then(result => {
+        usersPlaylists = result;
+    });
+}
+updatePlaylistsByUser();
+
 function GetSongsHTML(songsJSON) {
+    console.log("logging users playlists")
+    console.log(usersPlaylists)
     songsJSON = JSON.parse(songsJSON);
     var htmlReturnValueList = [];
 
@@ -21,7 +34,20 @@ function GetSongsHTML(songsJSON) {
 
         var htmlValue = 
         `<div class="song-display-container">
-            <span class="song-display-author" onclick="showProfile('${author}')">${author}</span> - ${formattedTitle} <button class="song-display-play-btn" onclick="playAudio(${id})">▶</button>
+            <span class="song-display-author" onclick="showProfile('${author}')">
+            ${author}</span>
+            - ${formattedTitle} <button class="song-display-play-btn" onclick="playAudio(${id})">▶</button>
+
+            <div class="dropdown" style="display: inline-block; float: right; margin-right: 10px;">
+                <a class="btn btn-secondary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Add to Playlist
+                </a>
+            
+                <ul class="dropdown-menu">
+                    ${usersPlaylists.map(curPlaylist => `<li><div onclick="addSongToPlaylist(${id}, ${curPlaylist.id})" data-song-id="${id}" data-playlist-id="${curPlaylist.id}" class="dropdown-item cursor-pointer">${curPlaylist.title}</div></li>`).join("")}
+                </ul>
+          </div>
+
         </div>`
 
 
@@ -39,10 +65,11 @@ function GetPlaylistHTML(playlistJSON) {
     playlistJSON.forEach(playlist => {
         var title = playlist.title;
         var songCount = playlist.song_count;
+        var id = playlist.id;
 
         var htmlValue = 
         `
-            <div class="playlist-container"><strong>${title}</strong>, ${songCount} song(s)</div>
+            <div onclick="show_songs_in_playlist(${id}, '${title}')" class="playlist-container"><strong>${title}</strong>, ${songCount} song(s)</div>
         `
 
         htmlReturnValue.push(htmlValue);
@@ -55,5 +82,36 @@ const audioPlayer = document.querySelector("#audio-player");
 function playAudio(id) {
     audioPlayer.setAttribute("src", `media/songs/${id}.wav`);
     audioPlayer.dataset.song_id = id
+    audioPlayer.play();
+}*/
+
+console.log("song.js loaded")
+
+function getSongsHTML(songsJSON) {
+    var htmlReturnValue = "";
+
+    songsJSON.forEach(songData => {
+        var author = songData.author.username;
+        var title = songData.title;
+        var formattedTitle = title;
+        var id = songData.id;
+
+        htmlReturnValue += 
+        `
+        <div class="song-display-container">
+        <span class="song-display-author" onclick="showProfile('${author}')">
+        ${author}</span>
+        - ${formattedTitle} <button class="song-display-play-btn" onclick="playAudio(${id})">▶</button>
+    </div>
+        `
+    });
+
+    return htmlReturnValue;
+}
+
+const audioPlayer = document.querySelector("#audio-player")
+function playAudio(songID) {
+    audioPlayer.setAttribute("src", `/media/songs/${songID}.wav`);
+    audioPlayer.dataset.song_id = songID;
     audioPlayer.play();
 }

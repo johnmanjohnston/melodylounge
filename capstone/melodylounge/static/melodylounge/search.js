@@ -10,26 +10,7 @@ searchForm.addEventListener("submit", (ev) => {
     var searchQuery = ev.target.elements["search_query"].value;
     console.log(searchQuery);
 
-    fetch(`search_songs/${searchQuery}`).then(response => response.text()).then(result => {
-        console.log(result)
-        
-        var htmlValues = GetSongsHTML(result);
-
-        console.log(htmlValues)
-
-        if (htmlValues.length === 0) {
-            songsDispaly.innerHTML = "No results"
-        }
-
-        htmlValues.forEach(htmlValue => {
-            songsDispaly.innerHTML += htmlValue;
-        });
+    fetch(`search_songs/${searchQuery}`).then(response => response.json()).then(result => {
+        SONGS_DISPLAY.innerHTML = getSongsHTML(result);
     });
-    
-    /*
-    fetch(`all_songs`).then(response => response.text()).then(result => {
-        console.log(GetSongsHTML(result))
-    });
-    */
-
 })

@@ -42,6 +42,8 @@ html, body {
     bottom: 0;
 }
 
+.cursor-pointer { cursor: pointer; }
+
 audio::-webkit-media-controls-enclosure {
     border-radius: 0;
 }
@@ -71,7 +73,7 @@ audio::-webkit-media-controls-play-button {
 
 #songs-display {
     margin: 2em;
-    max-height: 34vw;
+    height: 34vw;
 }
 
 .song-display-author {

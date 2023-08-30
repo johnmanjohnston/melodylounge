@@ -1,4 +1,4 @@
-const profileName = document.querySelector("#profile-name");
+/*const profileName = document.querySelector("#profile-name");
 
 function showProfile(username) {
     fetch(`songs_by_author/${username}`).then(response => response.text()).then(result => {
@@ -10,5 +10,15 @@ function showProfile(username) {
         htmlValues.forEach(htmlValue => {
             songsDispaly.innerHTML += htmlValue
         });
+    });
+}*/
+
+console.log("profile.js loaded")
+
+function showProfile(username) {
+    showTab("profile-tab");
+
+    fetch(`songs_by_author/${username}`).then(response => response.json()).then(result => {
+        SONGS_DISPLAY.innerHTML = getSongsHTML(result)
     });
 }
