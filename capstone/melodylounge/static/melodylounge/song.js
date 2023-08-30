@@ -109,6 +109,28 @@ function getSongsHTML(songsJSON) {
     return htmlReturnValue;
 }
 
+function GetPlaylistHTML(playlistJSON) {
+    var htmlReturnValue = "";
+
+    playlistJSON.forEach(playlistData => {
+        var title = playlistData.title;
+        var songCount = playlistData.song_count;
+
+
+        htmlReturnValue += 
+        `
+        <div class="song-display-container">
+            <span>
+            ${title}</span>
+            - ${songCount} song(s)
+        </div>
+        `
+    });
+
+
+    return htmlReturnValue;
+}
+
 const audioPlayer = document.querySelector("#audio-player")
 function playAudio(songID) {
     audioPlayer.setAttribute("src", `/media/songs/${songID}.wav`);

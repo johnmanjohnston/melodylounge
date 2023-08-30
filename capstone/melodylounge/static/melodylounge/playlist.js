@@ -42,3 +42,16 @@ function show_songs_in_playlist(id, playlistTitle) {
         });
     });
 }*/
+
+console.log("playlist.js loaded")
+const myPlaylistsContainer = document.querySelector("#my-playlists-container");
+
+function updatePlaylistList() {
+    fetch(`get_playlists_by_user/${USERNAME}`).then(response => response.json()).then(result => {
+        console.log(result)
+
+        myPlaylistsContainer.innerHTML = GetPlaylistHTML(result)
+    });
+}
+
+updatePlaylistList();

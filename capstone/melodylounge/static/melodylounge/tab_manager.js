@@ -9,6 +9,7 @@ function hideAlTabs() {
 }
 
 function showTab(tabName) {
+    updatePlaylistList();
     SONGS_DISPLAY.innerHTML = "";
 
     tabs.forEach(tab => {
