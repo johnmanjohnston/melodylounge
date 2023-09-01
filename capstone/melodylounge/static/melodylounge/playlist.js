@@ -44,14 +44,27 @@ function show_songs_in_playlist(id, playlistTitle) {
 }*/
 
 console.log("playlist.js loaded")
-const myPlaylistsContainer = document.querySelector("#my-playlists-container");
+var myPlaylistsContainer = document.querySelector("#my-playlists-container");
+var myPlaylists = {};
 
 function updatePlaylistList() {
     fetch(`get_playlists_by_user/${USERNAME}`).then(response => response.json()).then(result => {
         console.log(result)
 
         myPlaylistsContainer.innerHTML = GetPlaylistHTML(result)
+        myPlaylists = result;
     });
+}
+
+function viewSongsInPlaylist(playlistID, playlistName) {
+    showTab("songs-in-playlist-tab");
+    fetch(`get_songs_by_playlist_id/${playlistID}`).then(response => response.json()).then(result => {
+        SONGS_DISPLAY.innerHTML = `<h1>${playlistName}</h1> <hr>` + getSongsHTML(result)
+    });
+}
+
+function addSongToPlaylist(playlistID, songID) {
+    console.log(`playlistID: ${playlistID} and songID is ${songID}`)
 }
 
 updatePlaylistList();

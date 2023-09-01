@@ -102,7 +102,18 @@ function getSongsHTML(songsJSON) {
         <span class="song-display-author" onclick="showProfile('${author}')">
         ${author}</span>
         - ${formattedTitle} <button class="song-display-play-btn" onclick="playAudio(${id})">▶</button>
-    </div>
+        
+        <div class="dropdown show">
+        <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Add to Playlist
+        </a>
+
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+            ${myPlaylists.map((playlistData) => {return `<div onclick="addSongToPlaylist(${playlistData.id}, ${id})" class="dropdown-item">${playlistData.title}</div>`}).join("")}
+        </div>
+        </div>
+
+        </div>
         `
     });
 
@@ -115,11 +126,11 @@ function GetPlaylistHTML(playlistJSON) {
     playlistJSON.forEach(playlistData => {
         var title = playlistData.title;
         var songCount = playlistData.song_count;
-
+        var playlistID = playlistData.id;
 
         htmlReturnValue += 
         `
-        <div class="song-display-container">
+        <div onclick="viewSongsInPlaylist(${playlistID}, '${title}')" class="song-display-container">
             <span>
             ${title}</span>
             - ${songCount} song(s)
