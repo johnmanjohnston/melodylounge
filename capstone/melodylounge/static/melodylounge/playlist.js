@@ -65,6 +65,14 @@ function viewSongsInPlaylist(playlistID, playlistName) {
 
 function addSongToPlaylist(playlistID, songID) {
     console.log(`playlistID: ${playlistID} and songID is ${songID}`)
+
+    fetch(`/add_song_to_playlist`, {
+        method: "post",
+        body: JSON.stringify({
+            "song_id": songID,
+            "playlist_id": playlistID
+        })
+    })
 }
 
 updatePlaylistList();
