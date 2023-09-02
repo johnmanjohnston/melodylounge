@@ -104,17 +104,17 @@ function getSongsHTML(songsJSON, removePlaylistID=-1, removeSongPlaylistName="")
         - ${formattedTitle} <button class="song-display-play-btn" onclick="playAudio(${id})">▶</button>
         
         ${[0].map(() => { if (removePlaylistID != -1) {return `<div onclick="removeSongFromPlaylist(${removePlaylistID}, ${id}, '${removeSongPlaylistName}')" class="remove-from-playlist-btn">
-        <button>Remove from playlist ${removePlaylistID}</button>
+        -
     </div>`} else return ""})}
         
 
         <div class="dropdown show">
-        <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Add to Playlist
+        <a class="dropdown-toggle add-to-playlist-btn" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            +
         </a>
 
         <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-            ${myPlaylists.map((playlistData) => {return `<div onclick="addSongToPlaylist(${playlistData.id}, ${id})" class="dropdown-item">${playlistData.title}</div>`}).join("")}
+            ${myPlaylists.map((playlistData) => {return `<div role="button" onclick="addSongToPlaylist(${playlistData.id}, ${id})" class="dropdown-item">${playlistData.title}</div>`}).join("")}
         </div>
         </div>
 

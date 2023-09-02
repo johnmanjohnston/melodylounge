@@ -1,10 +1,12 @@
 console.log("tab_manager.js loaded")
 
 var tabs = ["search-tab", "playlists-tab", "profile-tab", "songs-in-playlist-tab", "home-tab"]
-var navbarBrandBtn = document.querySelector("#navbar-brand-btn");
 
-navbarBrandBtn.setAttribute("href", "#");
-navbarBrandBtn.setAttribute("onclick", "showTab('home-tab')")
+if (window.location.pathname == "/") {
+    var navbarBrandBtn = document.querySelector("#navbar-brand-btn");
+    navbarBrandBtn.setAttribute("href", "#");
+    navbarBrandBtn.setAttribute("onclick", "showTab('home-tab')")
+}
 
 function hideAllTabs() {
     tabs.forEach(tab => {

@@ -74,7 +74,7 @@ audio::-webkit-media-controls-play-button {
 
 #songs-display {
     margin: 2em;
-    height: 34vw;
+    height: 80vh;
 }
 
 .song-display-author {
@@ -101,8 +101,36 @@ audio::-webkit-media-controls-play-button {
     transform: translateY(-50%);
 }
 
-.song-display-play-btn:hover {
+.add-to-playlist-btn {
+    color: whitesmoke;
+    text-decoration: none;
+    border: 1px solid whitesmoke;
+
+    padding: 3px 8px;
+    opacity: 0.3;
+
+    position: absolute;
+    right: 45px;
+
+    transform: translateY(calc(-75% - 4px));
+}
+
+.remove-from-playlist-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(calc(-50% + 1px));
+    right: 124px;
+    cursor: pointer;
+
+    border: 1px solid white;
+    padding: 3px 10px;
+
+    opacity: 0.3;
+}
+
+.song-display-play-btn:hover, .add-to-playlist-btn:hover, .remove-from-playlist-btn:hover {
     opacity: .8;
+    color: white;
 }
 
 #search-box {
@@ -127,7 +155,19 @@ input[type="submit"] {
     opacity: 0.5;
 }
 
-input[type="submit"]:hover {
+input[type="text"] {
+    padding: 0.5em 1em;
+    border-radius: 0.4em;
+    background-color: transparent;
+    color: white;
+    margin-left: 0.5em;
+    outline: 2px solid whitesmoke;
+    border: none;
+
+    opacity: 0.5;
+}
+
+input[type="submit"]:hover, input[type="text"]:focus {
     opacity: .9;
 }
 
@@ -140,6 +180,8 @@ input[type="submit"]:hover {
     width: 50%;
 
     bottom: 0; left: 0;
+
+    text-overflow:unset;
 }
 
 .edit-playlist-title-input:focus {
