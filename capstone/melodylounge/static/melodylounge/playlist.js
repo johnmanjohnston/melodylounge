@@ -59,8 +59,22 @@ function updatePlaylistList() {
 function viewSongsInPlaylist(playlistID, playlistName) {
     showTab("songs-in-playlist-tab");
     fetch(`get_songs_by_playlist_id/${playlistID}`).then(response => response.json()).then(result => {
-        SONGS_DISPLAY.innerHTML = `<h1>${playlistName}</h1> <hr>` + getSongsHTML(result)
+        SONGS_DISPLAY.innerHTML = `<h1>${playlistName}</h1> <hr>` + getSongsHTML(result, playlistID, playlistName)
     });
+}
+
+function removeSongFromPlaylist(removePlaylistID, songID, removeSongPlaylistName) {
+    console.log(`playlistID: ${removePlaylistID} and songID is ${songID}`)
+    
+    fetch(`/remove_song_from_playlist`, {
+        method: "post",
+        body: JSON.stringify({
+            "song_id": songID,
+            "playlist_id": removePlaylistID
+        })
+    }).then(response => response.text()).then(result => {
+        viewSongsInPlaylist(removePlaylistID, removeSongPlaylistName)
+    })
 }
 
 function addSongToPlaylist(playlistID, songID) {

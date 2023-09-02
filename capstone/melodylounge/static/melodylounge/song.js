@@ -87,7 +87,7 @@ function playAudio(id) {
 
 console.log("song.js loaded")
 
-function getSongsHTML(songsJSON) {
+function getSongsHTML(songsJSON, removePlaylistID=-1, removeSongPlaylistName="") {
     var htmlReturnValue = "";
 
     songsJSON.forEach(songData => {
@@ -103,6 +103,11 @@ function getSongsHTML(songsJSON) {
         ${author}</span>
         - ${formattedTitle} <button class="song-display-play-btn" onclick="playAudio(${id})">▶</button>
         
+        ${[0].map(() => { if (removePlaylistID != -1) {return `<div onclick="removeSongFromPlaylist(${removePlaylistID}, ${id}, '${removeSongPlaylistName}')" class="remove-from-playlist-btn">
+        <button>Remove from playlist ${removePlaylistID}</button>
+    </div>`} else return ""})}
+        
+
         <div class="dropdown show">
         <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Add to Playlist

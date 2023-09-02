@@ -151,3 +151,19 @@ def add_song_to_playlist(request):
 
     playlist.songs.add(song)
     return HttpResponse("Song added successfully")
+
+def remove_song_from_playlist(request):
+    json_data = json.loads(request.body)
+
+    song_id =     int(json_data["song_id"])
+    playlist_id = int(json_data["playlist_id"])
+
+    playlist = Playlist.objects.all().filter(id=playlist_id)[0]
+
+    if request.user.id != playlist.author.id:
+        return HttpResponseForbidden()
+    
+    song = Song.objects.get(id=song_id)
+
+    playlist.songs.remove(song)
+    return HttpResponse("Song removed successfully")

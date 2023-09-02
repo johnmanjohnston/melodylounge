@@ -38,8 +38,9 @@ html, body {
 }
 
 #audio-controller-wrapper {
-    position: absolute;
-    bottom: 0;
+    position: fixed;
+    bottom: -1px;
+    width: 100%;
 }
 
 .cursor-pointer { cursor: pointer; }
@@ -86,12 +87,18 @@ audio::-webkit-media-controls-play-button {
 }
 
 .song-display-play-btn {
-    float: right;
     background: none;
     padding: 3px 10px;
     border: 1px solid whitesmoke;
     color: whitesmoke;
     opacity: 0.3;
+
+    z-index: 10;
+
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
 }
 
 .song-display-play-btn:hover {
