@@ -56,10 +56,36 @@ function updatePlaylistList() {
     });
 }
 
+var renamePlaylistForm; // Will be assigned after the form is created in viewSongsInPlaylist()
+function renamePlaylist(ev) {
+    ev.preventDefault()
+    var playlistID = ev.target["playlist_id"].value
+    var newName = ev.target["new_name"].value
+    
+    fetch("rename_playlist", {
+        method: "post",
+        body: JSON.stringify({
+            "playlist_id": playlistID,
+            "new_name": newName
+        })
+    }).then(response => response.text()).then(result => {
+        console.log(result)
+    })
+}
+
 function viewSongsInPlaylist(playlistID, playlistName) {
     showTab("songs-in-playlist-tab");
     fetch(`get_songs_by_playlist_id/${playlistID}`).then(response => response.json()).then(result => {
-        SONGS_DISPLAY.innerHTML = `<h1>${playlistName}</h1> <hr>` + getSongsHTML(result, playlistID, playlistName)
+        SONGS_DISPLAY.innerHTML = 
+        `
+        <form class="position-relative" id="rename-playlist-form">
+            <input hidden name="playlist_id" value="${playlistID}">
+            <input class="edit-playlist-title-input" name="new_name" value="${playlistName}"> <input type="submit" value="Edit Title"> <hr>
+        </form>
+        ` + getSongsHTML(result, playlistID, playlistName)
+
+        renamePlaylistForm = document.querySelector("#rename-playlist-form");
+        renamePlaylistForm.addEventListener("submit", renamePlaylist)
     });
 }
 

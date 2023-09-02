@@ -167,3 +167,16 @@ def remove_song_from_playlist(request):
 
     playlist.songs.remove(song)
     return HttpResponse("Song removed successfully")
+
+def rename_playlist(request):
+    json_data = json.loads(request.body)
+
+    playlist_id = int(json_data["playlist_id"])
+    new_playlist_name = json_data["new_name"]
+
+    playlist = Playlist.objects.get(id=playlist_id)
+
+    playlist.title = new_playlist_name
+    playlist.save()
+
+    return HttpResponse("Playlist renamed")

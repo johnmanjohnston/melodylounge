@@ -39,8 +39,8 @@ html, body {
 
 #audio-controller-wrapper {
     position: fixed;
-    bottom: -1px;
-    width: 100%;
+    bottom: -5px;
+    width: 100vw;
 }
 
 .cursor-pointer { cursor: pointer; }
@@ -130,3 +130,21 @@ input[type="submit"] {
 input[type="submit"]:hover {
     opacity: .9;
 }
+
+.edit-playlist-title-input {
+    background: none;
+    color: whitesmoke;
+    font-size: calc(1.5em + 1vw);
+    border: none;
+    padding: 7px 15px;
+    width: 50%;
+
+    bottom: 0; left: 0;
+}
+
+.edit-playlist-title-input:focus {
+    outline: 1px solid gray;
+}
+
+.edit-playlist-title-input + input[type="submit"] {display: none;}
+.edit-playlist-title-input:focus + input[type="submit"], input[type="submit"]:focus {display: inline-block; transform: translateY(9px);}
