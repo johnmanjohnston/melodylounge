@@ -47,6 +47,22 @@ console.log("playlist.js loaded")
 var myPlaylistsContainer = document.querySelector("#my-playlists-container");
 var myPlaylists = {};
 
+var newPlaylistForm = document.querySelector("#new-playlist-form");
+newPlaylistForm.addEventListener("submit", newPlaylist)
+function newPlaylist(ev) {
+    ev.preventDefault();
+    var title = ev.target["title"].value;
+
+    fetch("new_playlist", {
+        method: "post",
+        body: JSON.stringify({
+            "title": title
+        })
+    }).then(response => response.text()).then(result => {
+        updatePlaylistList()
+    })
+}
+
 function updatePlaylistList() {
     fetch(`get_playlists_by_user/${USERNAME}`).then(response => response.json()).then(result => {
         console.log(result)

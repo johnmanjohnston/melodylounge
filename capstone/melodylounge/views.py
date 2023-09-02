@@ -180,3 +180,12 @@ def rename_playlist(request):
     playlist.save()
 
     return HttpResponse("Playlist renamed")
+
+def new_playlist(request):
+    user = User.objects.get(id=request.user.id)
+    title = json.loads(request.body)["title"]
+
+    playlist = Playlist(author=user, title=title)
+    playlist.save()
+
+    return HttpResponse("New playlist created.")

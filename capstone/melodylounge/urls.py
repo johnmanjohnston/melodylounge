@@ -18,6 +18,7 @@ urlpatterns = [
     path("remove_song_from_playlist", views.remove_song_from_playlist, name="remove_song_from_playlist"),
 
     path("rename_playlist", views.rename_playlist, name="rename_playlist"),
+    path("new_playlist", views.new_playlist, name="new_plalist"),
 ]
 
 from django.conf import settings
