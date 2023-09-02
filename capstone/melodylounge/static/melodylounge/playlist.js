@@ -89,6 +89,16 @@ function renamePlaylist(ev) {
     })
 }
 
+function deletePlaylist(playlistID) {
+    fetch("delete_playlist", {
+        method: "post", 
+        body: JSON.stringify({ "playlist_id": playlistID })
+    }).then(response => response.text()).then(result => {
+        console.log(result)
+        showTab("playlists-tab")
+    })
+}
+
 function viewSongsInPlaylist(playlistID, playlistName) {
     showTab("songs-in-playlist-tab");
     fetch(`get_songs_by_playlist_id/${playlistID}`).then(response => response.json()).then(result => {
@@ -98,6 +108,8 @@ function viewSongsInPlaylist(playlistID, playlistName) {
             <input hidden name="playlist_id" value="${playlistID}">
             <input class="edit-playlist-title-input" name="new_name" value="${playlistName}"> <input type="submit" value="Edit Title"> <hr>
         </form>
+
+        <button onclick="deletePlaylist(${playlistID})" class="btn btn-danger">Delete Playlist</button> <br> <br>
         ` + getSongsHTML(result, playlistID, playlistName)
 
         renamePlaylistForm = document.querySelector("#rename-playlist-form");

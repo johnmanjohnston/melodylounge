@@ -189,3 +189,11 @@ def new_playlist(request):
     playlist.save()
 
     return HttpResponse("New playlist created.")
+
+def delete_playlist(request):
+    id = json.loads(request.body)["playlist_id"]
+    playlist = Playlist.objects.get(id=id)
+
+    playlist.delete()
+
+    return HttpResponse("Playlist deleted")
