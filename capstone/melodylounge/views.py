@@ -122,6 +122,10 @@ def songs_by_author(request, author_name):
         return JsonResponse([song.serialize() for song in songs], safe=False)
     except IndexError: return JsonResponse([], safe=False)
 
+def get_song_data_by_id(request, id):
+    song = Song.objects.get(id=id)
+    return JsonResponse([song.serialize()], safe=False)
+
 # Playlist APIs
 def get_songs_by_playlist_id(request, id):
     playlist = Playlist(id=id)

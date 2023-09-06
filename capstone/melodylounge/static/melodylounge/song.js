@@ -147,9 +147,15 @@ function GetPlaylistHTML(playlistJSON) {
     return htmlReturnValue;
 }
 
-const audioPlayer = document.querySelector("#audio-player")
+const audioPlayer = document.querySelector("#audio-player");
+const currentlyPlayling = document.querySelector("#currently-playing");
+
 function playAudio(songID) {
     audioPlayer.setAttribute("src", `/media/songs/${songID}.wav`);
     audioPlayer.dataset.song_id = songID;
     audioPlayer.play();
+
+    fetch(`get_song_data_by_id/${songID}`).then(response => response.json()).then(result => {
+        currentlyPlayling.innerHTML = `<div class="w-50;">${getSongsHTML(result)}</div>`
+    });
 }

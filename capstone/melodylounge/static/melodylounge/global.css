@@ -194,3 +194,7 @@ input[type="submit"]:hover, input[type="text"]:focus {
 
 .edit-playlist-title-input + input[type="submit"] {display: none;}
 .edit-playlist-title-input:focus + input[type="submit"], input[type="submit"]:focus {display: inline-block; transform: translateY(9px);}
+
+#currently-playing {
+    background: black;
+}

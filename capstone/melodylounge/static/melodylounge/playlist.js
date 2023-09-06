@@ -141,7 +141,7 @@ function addSongToPlaylist(playlistID, songID) {
             "song_id": songID,
             "playlist_id": playlistID
         })
-    })
+    }).then(() => { updatePlaylistList(); })
 }
 
 updatePlaylistList();
