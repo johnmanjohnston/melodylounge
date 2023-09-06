@@ -127,7 +127,8 @@ function removeSongFromPlaylist(removePlaylistID, songID, removeSongPlaylistName
             "playlist_id": removePlaylistID
         })
     }).then(response => response.text()).then(result => {
-        viewSongsInPlaylist(removePlaylistID, removeSongPlaylistName)
+        // viewSongsInPlaylist(removePlaylistID, removeSongPlaylistName)
+        document.querySelector(`#song-${songID}`).remove() // Remove this one element instead of refreshing the entire songs view
     })
 }
 

@@ -77,6 +77,7 @@ def save_audio_file(user_id, song_title, explicit, f):
     song.save()
 
     with open(settings.SONG_DESTINATION_DIR + str(song.id) + ".wav", "wb+") as destination:
+    #with open("{settings.SONG_DESTINATION_DIR}{song.id}.wav", "wb+") as destination:
         for chunk in f.chunks():
             destination.write(chunk)
 
@@ -176,6 +177,9 @@ def rename_playlist(request):
 
     playlist = Playlist.objects.get(id=playlist_id)
 
+    if request.user.id != playlist.author.id:
+        return HttpResponseForbidden()
+    
     playlist.title = new_playlist_name
     playlist.save()
 
@@ -194,6 +198,8 @@ def delete_playlist(request):
     id = json.loads(request.body)["playlist_id"]
     playlist = Playlist.objects.get(id=id)
 
-    playlist.delete()
+    if request.user.id != playlist.author.id: 
+        return HttpResponseForbidden()
 
+    playlist.delete()
     return HttpResponse("Playlist deleted")

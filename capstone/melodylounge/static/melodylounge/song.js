@@ -98,7 +98,7 @@ function getSongsHTML(songsJSON, removePlaylistID=-1, removeSongPlaylistName="")
 
         htmlReturnValue += 
         `
-        <div class="song-display-container">
+        <div class="song-display-container" id="song-${id}">
         <span class="song-display-author" onclick="showProfile('${author}')">
         ${author}</span>
         - ${formattedTitle} <button class="song-display-play-btn" onclick="playAudio(${id})">▶</button>

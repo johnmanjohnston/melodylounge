@@ -1,10 +1,8 @@
-from typing import Any, Dict, Tuple
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.conf import settings
 import os
 
-# Create your models here.
 class User(AbstractUser): 
     def serialize(self):
         return {
@@ -26,6 +24,7 @@ class Song(models.Model):
 
     def delete(self, *args, **kwargs):
         os.remove(settings.SONG_DESTINATION_DIR + str(self.id) + ".wav")
+        # TODO: refactor with fstrings. test this out later: os.remove(f"{settings.SONG_DESTINATION_DIR}{self.id}.wav")
         return super().delete(*args, **kwargs)
     
     def serialize(self):
