@@ -13,11 +13,17 @@ of your playlists. On the right is a button which lets you play said song. If th
 When you open the playlists tab, you are shown a menu which shows all of your playlists. Clicking on any of the playlists will show you the songs in said playlist, and the playlist title is visible on top. Clicking on the playlist title will show a textbox, which lets you reword the title of said playlist. You will also have the option to
 delete the playlist that you are viewing. The delete button is directly under the playlist title. 
 
+When you click on the play button for a song, the song comes below right above the play button. Clicking on the author of the song will take you to a tab where you can see all songs by the
+author. You will also have the option to add the song to any playlist which you have created. 
+
 # How to Run
-To run MelodyLounge simply run `python manage.py runserver` and you should be good to go!
+To run MelodyLounge simply run `python manage.py runserver` and the server should be up and running.
 
 # Distinctiveness and Complexity
+MelodyLounge is distinctive and complex as it is a very powerful and blazingly fast application, and the main features of the app are done in a single page, which allows for fast loading, and better caching. MelodyLounge also makes use of state-of-the-art security practices for protection from malicious practices. Every request which manipulates any data is checked to see if the user has permission to perform such actions.
 
-# What's Included in Each File?
+MelodyLounge also involves gorgeous, simplistic, and modest UI, with a compeltely mobile responsive layout.
 
+# What Is Included in Each File?
+TODO
 

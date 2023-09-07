@@ -1,20 +1,30 @@
 {% extends "melodylounge/layout.html" %}
 
 {% block body %}
-<h1>Publish</h1>
+<div style="margin: 1em;">
+    <h1>Publish</h1>
+    
+    <form action="{% url 'publish' %}" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        
+        <div class="form-group">
+            <label>Song File</label> <br>
+            <div>
+                <input required type="file" name="song_file" id="" accept="audio/x-wav"> <br> <br>
+            </div>
 
-<form action="{% url 'publish' %}" method="post" enctype="multipart/form-data">
-    {% csrf_token %}
-    <label>Song File</label>
-    <input required type="file" name="song_file" id="" accept="audio/x-wav"> <br> <br>
+            <label>Title</label> 
+            <div>
+                <input type="text" name="title" id=""> <br><br>
+            </div>
 
-    <label>Title</label>
-    <input type="text" name="title" id=""> <br><br>
-
-    <label>Explicit</label>
-    <input type="checkbox" name="explicit" id="">
-
-    <br><br>
-    <input type="submit" value="Upload Song">
-</form>
+            <label>Explicit</label>
+            <div class="form-check form-switch">
+                <input type="checkbox" class="form-check-input checkbox" name="explicit" id="">
+            </div>
+            <br><br>
+            <input type="submit" value="Upload Song">
+        </div>
+    </form>
+</div>
 {% endblock %}
