@@ -159,3 +159,9 @@ function playAudio(songID) {
         currentlyPlayling.innerHTML = `<div class="w-50;">${getSongsHTML(result)}</div>`
     });
 }
+
+function showRandomSongs() {
+    fetch("random_songs").then(response => response.json()).then(result => {
+        SONGS_DISPLAY.innerHTML = getSongsHTML(result);
+    });
+}

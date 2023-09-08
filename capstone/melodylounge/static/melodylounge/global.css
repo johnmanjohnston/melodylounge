@@ -26,7 +26,7 @@ html, body {
 }
 
 .ml-bg-navbar {
-    background: #0C0C0C;
+    background: #111;
 }
 
 .ml-text {
@@ -40,7 +40,7 @@ html, body {
 
 #audio-controller-wrapper {
     position: fixed;
-    bottom: -5px;
+    bottom: -7px;
     width: 100vw;
 }
 

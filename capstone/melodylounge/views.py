@@ -76,8 +76,8 @@ def save_audio_file(user_id, song_title, explicit, f):
     song = Song(author=author, title=song_title, explicit=explicit)
     song.save()
 
-    with open(settings.SONG_DESTINATION_DIR + str(song.id) + ".wav", "wb+") as destination:
-    #with open("{settings.SONG_DESTINATION_DIR}{song.id}.wav", "wb+") as destination:
+    #with open(settings.SONG_DESTINATION_DIR + str(song.id) + ".wav", "wb+") as destination:
+    with open(f"{settings.SONG_DESTINATION_DIR}{song.id}.wav", "wb+") as destination:
         for chunk in f.chunks():
             destination.write(chunk)
 
@@ -207,3 +207,17 @@ def delete_playlist(request):
 
     playlist.delete()
     return HttpResponse("Playlist deleted")
+
+# Misc
+def random_songs(request):
+    from random import randint
+    selected_songs = []
+    
+    while len(selected_songs) <= 2:
+        selected_song = Song.objects.all()[randint(0, len(Song.objects.all()) - 1)]
+
+        if selected_song in selected_songs: continue
+
+        selected_songs.append(selected_song)
+
+    return JsonResponse([song.serialize() for song in selected_songs], safe=False)

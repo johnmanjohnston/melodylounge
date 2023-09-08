@@ -22,7 +22,7 @@ To run MelodyLounge simply run `python manage.py runserver` and the server shoul
 # Distinctiveness and Complexity
 MelodyLounge is distinctive and complex as it is a very powerful and blazingly fast application, and the main features of the app are done in a single page, which allows for fast loading, and better caching. MelodyLounge also makes use of state-of-the-art security practices for protection from malicious practices. Every request which manipulates any data is checked to see if the user has permission to perform such actions.
 
-MelodyLounge also involves gorgeous, simplistic, and modest UI, with a compeltely mobile responsive layout.
+MelodyLounge also involves gorgeous, simplistic, and modest UI, with a compeltely responsive layout, which lets MelodyLounge be accessed regardless of device, screen size, or other such factors. MelodyLounge also offers the functionality to let users download songs they listen to so that they can listen to their favorite tunes, regardless of wether they have internet or not.   
 
 # What Is Included in Each File?
 TODO
