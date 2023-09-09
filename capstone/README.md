@@ -22,8 +22,14 @@ To run MelodyLounge simply run `python manage.py runserver` and the server shoul
 # Distinctiveness and Complexity
 MelodyLounge is distinctive and complex as it is a very powerful and blazingly fast application, and the main features of the app are done in a single page, which allows for fast loading, and better caching. MelodyLounge also makes use of state-of-the-art security practices for protection from malicious practices. Every request which manipulates any data is checked to see if the user has permission to perform such actions.
 
-MelodyLounge also involves gorgeous, simplistic, and modest UI, with a compeltely responsive layout, which lets MelodyLounge be accessed regardless of device, screen size, or other such factors. MelodyLounge also offers the functionality to let users download songs they listen to so that they can listen to their favorite tunes, regardless of wether they have internet or not.   
+MelodyLounge also involves gorgeous, simplistic, and modest UI, with a compeltely responsive layout, which lets MelodyLounge be accessed regardless of device, screen size, or other such factors. MelodyLounge also offers the functionality to let users download songs they listen to so that they can listen to their favorite tunes, regardless of wether they have internet or not.  
+
+MelodyLounge comprises of models for Users, Songs, and Playlists. The communication with the server-side and client-side code happens via JSON. The `Song` model comprises of fields for the author, title, and a true/false value to mark wether the song is explicit or not. The model is programmed to automatically get rid of the song audio file uploaded during the creation of the `Song` model, via the `delete()` function present in the Song model class. This makes it so that when we delete a song from the Django admin interface, we do not have to manually locate the audio file and delete it ourselves--it is all done automatically.
+
+The Playlist model comprises of fields for the playlist author, title, and a field which is a collection of different objects of type `Song`. 
+
+All the models have `serialize()` functions in their class to make the conversion to JSON easier, which lets us send data about the class to the client. 
 
 # What Is Included in Each File?
-TODO
+In `views.py` all the functions that handle returning views and APIs are stored.
 

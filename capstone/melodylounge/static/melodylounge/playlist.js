@@ -110,7 +110,7 @@ function viewSongsInPlaylist(playlistID, playlistName) {
         </form>
 
         <button onclick="deletePlaylist(${playlistID})" class="btn btn-danger">Delete Playlist</button> <br> <br>
-        ` + getSongsHTML(result, playlistID, playlistName)
+        ` + getSongsHTML(result, playlistID, playlistName, JSON.stringify(result))
 
         renamePlaylistForm = document.querySelector("#rename-playlist-form");
         renamePlaylistForm.addEventListener("submit", renamePlaylist)

@@ -86,8 +86,9 @@ function playAudio(id) {
 }*/
 
 console.log("song.js loaded")
+var songQueue = ""
 
-function getSongsHTML(songsJSON, removePlaylistID=-1, removeSongPlaylistName="") {
+function getSongsHTML(songsJSON, removePlaylistID=-1, removeSongPlaylistName="", targetSongsQueue = null) {
     var htmlReturnValue = "";
 
     songsJSON.forEach(songData => {
@@ -101,7 +102,7 @@ function getSongsHTML(songsJSON, removePlaylistID=-1, removeSongPlaylistName="")
         <div class="song-display-container" id="song-${id}">
         <span class="song-display-author" onclick="showProfile('${author}')">
         ${author}</span>
-        - ${formattedTitle} <button class="song-display-play-btn" onclick="playAudio(${id})">▶</button>
+        - ${formattedTitle} <button class="song-display-play-btn" onclick="playAudio(${id}, '${btoa(targetSongsQueue)}')">▶</button>
         
         ${[0].map(() => { if (removePlaylistID != -1) {return `<div onclick="removeSongFromPlaylist(${removePlaylistID}, ${id}, '${removeSongPlaylistName}')" class="remove-from-playlist-btn">
         -
@@ -150,10 +151,27 @@ function GetPlaylistHTML(playlistJSON) {
 const audioPlayer = document.querySelector("#audio-player");
 const currentlyPlayling = document.querySelector("#currently-playing");
 
-function playAudio(songID) {
+async function playAudio(songID, targetSongQueue = null) {
+    if (targetSongQueue != null) {
+        songQueue = targetSongQueue;
+
+        const parsedSongQueue = JSON.parse(atob(songQueue));
+        
+        audioPlayer.addEventListener("ended", (ev) => {
+            for (var i = 0; i < songQueue.length; i++) {
+                console.log(`comparing song id of ${songID} and ${parsedSongQueue[i].id}`)
+                if (songID == parsedSongQueue[i].id) {
+                    playAudio(parsedSongQueue[(i + 1) % parsedSongQueue.length]["id"], songQueue);
+                    break;
+                }
+            }
+        });
+    }
+
     audioPlayer.setAttribute("src", `/media/songs/${songID}.wav`);
     audioPlayer.dataset.song_id = songID;
-    audioPlayer.play();
+    await audioPlayer.play();
+
 
     fetch(`get_song_data_by_id/${songID}`).then(response => response.json()).then(result => {
         currentlyPlayling.innerHTML = `<div class="w-50;">${getSongsHTML(result)}</div>`
