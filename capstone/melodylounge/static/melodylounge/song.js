@@ -100,10 +100,13 @@ function getSongsHTML(songsJSON, removePlaylistID=-1, removeSongPlaylistName="",
         htmlReturnValue += 
         `
         <div class="song-display-container" id="song-${id}">
-        <span class="song-display-author" onclick="showProfile('${author}')">
-        ${author}</span>
-        - ${formattedTitle} <button class="song-display-play-btn" onclick="playAudio(${id}, '${btoa(targetSongsQueue)}')">▶</button>
         
+        <div style='overflow: hidden; white-space: nowrap; text-overflow: ellipsis; width: calc(90% - 30vw);'>
+         <span class="song-display-author" onclick="showProfile('${author}')">
+            ${author}</span>
+            - ${formattedTitle} <button class="song-display-play-btn" onclick="playAudio(${id}, '${btoa(targetSongsQueue)}')">▶</button>
+        </div>
+
         ${[0].map(() => { if (removePlaylistID != -1) {return `<div onclick="removeSongFromPlaylist(${removePlaylistID}, ${id}, '${removeSongPlaylistName}')" class="remove-from-playlist-btn">
         -
     </div>`} else return ""})}
