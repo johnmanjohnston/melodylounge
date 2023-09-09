@@ -157,7 +157,7 @@ input[type="submit"], input[type="file"]::-webkit-file-upload-button {
     opacity: 0.5;
 }
 
-input[type="text"] {
+input[type="text"], input[type="password"] {
     padding: 0.5em 1em;
     border-radius: 0.4em;
     background-color: transparent;
@@ -169,7 +169,7 @@ input[type="text"] {
     opacity: 0.5;
 }
 
-input[type="submit"]:hover, input[type="text"]:focus, input[type="file"]::-webkit-file-upload-button:hover {
+input[type="submit"]:hover, input[type="text"]:focus, input[type="password"]:focus, input[type="file"]::-webkit-file-upload-button:hover {
     opacity: .9;
     cursor: pointer;
 }
@@ -219,3 +219,5 @@ input[type="submit"]:hover, input[type="text"]:focus, input[type="file"]::-webki
 ::-webkit-scrollbar-track {
     background-color: black;
 }
+
+.almost-transparent { opacity: 0.7; }
