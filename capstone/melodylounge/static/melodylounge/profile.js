@@ -1,22 +1,14 @@
-/*const profileName = document.querySelector("#profile-name");
-
-function showProfile(username) {
-    fetch(`songs_by_author/${username}`).then(response => response.text()).then(result => {
-        showTab("profile-tab");
-        profileName.innerHTML = `Profile: ${username}`
-
-        var htmlValues = GetSongsHTML(result);
-
-        htmlValues.forEach(htmlValue => {
-            songsDispaly.innerHTML += htmlValue
-        });
-    });
-}*/
-
 console.log("profile.js loaded")
+const profileNameDisplay = document.querySelector("#profile-name");
 
 function showProfile(username) {
     showTab("profile-tab");
+
+    if (username == USERNAME) {
+        profileNameDisplay.innerHTML = "My Profile"
+    } else {
+        profileNameDisplay.innerHTML = `${username}'s profile`
+    }
 
     fetch(`songs_by_author/${username}`).then(response => response.json()).then(result => {
         SONGS_DISPLAY.innerHTML = getSongsHTML(result)

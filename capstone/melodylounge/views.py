@@ -114,6 +114,16 @@ def search_songs(request, query):
 
     return JsonResponse([song.serialize() for song in songs], safe=False)
 
+def search_users(request, query): 
+    users = []
+    query = str(query).lower()
+
+    for individual_user in User.objects.all():
+        if query == individual_user.username.lower() or query in individual_user.username.lower():
+            users.append(individual_user)
+
+    return JsonResponse([user.serialize() for user in users], safe=False)
+
 def songs_by_author(request, author_name):
     try:
         user = User.objects.all().filter(username=author_name)[0]

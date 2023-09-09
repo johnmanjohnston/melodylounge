@@ -8,6 +8,7 @@ class User(AbstractUser):
         return {
             "username": self.username,
             "id": self.id,
+            "songs_released": len(Song.objects.all().filter(author=self))
         }
 
 # Song:
