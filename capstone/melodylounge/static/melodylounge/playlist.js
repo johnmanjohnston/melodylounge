@@ -61,7 +61,7 @@ function viewSongsInPlaylist(playlistID, playlistName) {
         `
         <form class="position-relative" id="rename-playlist-form">
             <input hidden name="playlist_id" value="${playlistID}">
-            <input class="edit-playlist-title-input" name="new_name" value="${playlistName}"> <input type="submit" value="Edit Title"> <hr>
+            <input class="edit-playlist-title-input" name="new_name" value="${playlistName}"> <input type="submit" class='edit-title-btn' value="Edit Title"> <hr>
         </form>
 
         <button onclick="deletePlaylist(${playlistID})" class="btn btn-danger">Delete Playlist</button> <br> <br>
