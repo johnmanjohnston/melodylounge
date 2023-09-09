@@ -45,7 +45,14 @@
     <audio controls id="audio-player"></audio>
 </div>
 
-<script>const USERNAME = "{{ user.username }}"; const CSRF_TOKEN = "{{ csrf_token }}"</script>
+<script>
+const USERNAME = "{{ user.username }}"; 
+const CSRF_TOKEN = "{{ csrf_token }}" 
+
+const CSRF_HEADERS = {
+    "X-CSRFToken": CSRF_TOKEN
+}
+</script>
 <script src="/static/melodylounge/search.js"></script>
 <script src="/static/melodylounge/profile.js"></script>
 <script src="/static/melodylounge/playlist.js"></script>

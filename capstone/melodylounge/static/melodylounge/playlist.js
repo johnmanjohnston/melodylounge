@@ -10,6 +10,7 @@ function newPlaylist(ev) {
 
     fetch("new_playlist", {
         method: "post",
+        headers: CSRF_HEADERS,
         body: JSON.stringify({
             "title": title
         })
@@ -35,6 +36,7 @@ function renamePlaylist(ev) {
     
     fetch("rename_playlist", {
         method: "post",
+        headers: CSRF_HEADERS,
         body: JSON.stringify({
             "playlist_id": playlistID,
             "new_name": newName
@@ -47,6 +49,7 @@ function renamePlaylist(ev) {
 function deletePlaylist(playlistID) {
     fetch("delete_playlist", {
         method: "post", 
+        headers: CSRF_HEADERS,
         body: JSON.stringify({ "playlist_id": playlistID })
     }).then(response => response.text()).then(result => {
         console.log(result)
@@ -77,6 +80,7 @@ function removeSongFromPlaylist(removePlaylistID, songID, removeSongPlaylistName
     
     fetch(`/remove_song_from_playlist`, {
         method: "post",
+        headers: CSRF_HEADERS,
         body: JSON.stringify({
             "song_id": songID,
             "playlist_id": removePlaylistID
@@ -92,6 +96,7 @@ function addSongToPlaylist(playlistID, songID, playlistTitle) {
 
     fetch(`/add_song_to_playlist`, {
         method: "post",
+        headers: CSRF_HEADERS,
         body: JSON.stringify({
             "song_id": songID,
             "playlist_id": playlistID

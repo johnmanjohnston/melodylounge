@@ -88,7 +88,7 @@ def publish(request):
         if form.is_valid():
             explicit = request.POST.get("explicit") is not None
             save_audio_file(user_id=request.user.id, song_title=request.POST["title"], explicit=explicit, f=request.FILES["song_file"])
-            return HttpResponse("Song saved")
+            return HttpResponseRedirect(reverse("index"))
         return HttpResponse("post request recieved")
     else:
         return render(request, "melodylounge/publish.html", {

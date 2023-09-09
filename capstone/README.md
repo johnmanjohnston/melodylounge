@@ -22,18 +22,18 @@ To run MelodyLounge simply run `python manage.py runserver` and the server shoul
 # Distinctiveness and Complexity
 MelodyLounge is distinctive and complex as it is a very powerful and blazingly fast application, and the main features of the app are done in a single page, which allows for fast loading, and better caching. MelodyLounge also makes use of state-of-the-art security practices for protection from malicious practices. Every request which manipulates any data is checked to see if the user has permission to perform such actions.
 
-MelodyLounge also involves gorgeous, simplistic, and modest UI, with a compeltely responsive layout, which lets MelodyLounge be accessed regardless of device, screen size, or other such factors. MelodyLounge also offers the functionality to let users download songs they listen to so that they can listen to their favorite tunes, regardless of wether they have internet or not.  
+MelodyLounge also involves gorgeous, simplistic, modest UI, with a compeltely responsive layout, which lets MelodyLounge be accessed regardless of device screen size. MelodyLounge also offers the functionality to let users download songs they listen to so that they can listen to their favorite tunes, regardless of wether they have internet or not.  
 
-MelodyLounge comprises of models for Users, Songs, and Playlists. The communication with the server-side and client-side code happens via JSON. The `Song` model comprises of fields for the author, title, and a true/false value to mark wether the song is explicit or not. The model is programmed to automatically get rid of the song audio file uploaded during the creation of the `Song` model, via the `delete()` function present in the Song model class. This makes it so that when we delete a song from the Django admin interface, we do not have to manually locate the audio file and delete it ourselves--it is all done automatically. MelodyLounge also has its own system to make sure that all the songs shown in the UI look consistent, by parsing the response JSON and returning it as HTML. This converstion happens in `song.js`. 
+MelodyLounge comprises of models for Users, Songs, and Playlists. The communication with the server-side and client-side code happens via JSON. The `Song` model comprises of fields for the author, title, and a true/false value to mark wether the song is explicit or not. The model is programmed to automatically get rid of the song audio file uploaded during the creation of the `Song` model, via the `delete()` function present in the Song model class. This makes it so that when we delete a song from the Django admin interface, we do not have to manually locate the audio file and delete it ourselves--it is all done automatically to speed up the process of compeltely deleting songs. MelodyLounge also has its own system to make sure that all the songs shown in the UI look consistent, by parsing the response JSON and returning it as HTML. This converstion happens in `song.js`. 
 
 # What Is Included in Each File?
 
 ### Server-Side Code
 In `views.py` all the functions that handle returning views and APIs are stored, and in `urls.py` the routes are mapped to the functions in `views.py`.
 
-There are views to register, login, logout, and publish songs, and there is also the view for the main application, which is the default route.
+There are views to register, login, logout, and publish songs, and the view for the main application, which is the default route.
 
-There are also quite a few API routes which the client side code uses to interfere with MelodyLounge's backend. 
+There are also multiple API routes which the client side code uses to interfere with MelodyLounge's backend. 
 
 The API consists of routes to search for songs, filter songs by author, get songs by a playlist ID, get playlists by a username, add songs to playlist, remove songs from playlist, get data about a particular song, rename/create/delete playlists, and finally a route to get random songs.
 
@@ -48,10 +48,10 @@ In `songs.js` contains the core code to handle displaying songs and playlists, a
 
 `tab_manager.js` consists of functions to handle switching tabs. 
 
-`search.js` handles the tab for searching for songs. When the search form is submitted, we prevent the default acation of submitting a form and we query the API for the search query and we then convert the JSON response into UI for the user, by calling `getSongsHTML()` in `song.js`
+`search.js` handles the tab for searching for songs. When the search form is submitted, we prevent the default acation of submitting a form and we query the API for the search query and we then convert the JSON response into UI that the user can see, with the help of `song.js`.
 
-`profile.js` hanldes the tab for looking at a profile. We query the server to get songs by the user's profile that we want to see, and we show the songs to the user.
+`profile.js` hanldes the tab for looking at a profile. We query the server to get songs by the user's profile that we want to see, and we show the songs UI to the user.
 
-`playlist.js` handles playlist operations. We have functions to create a new playlist, rename playlists, and delete playlists. We also have functions to view songs in a playlist, add songs to a playlist and remove songs from a playlist. All these functions send a fetch request to the server to carry out such operations.
+`playlist.js` handles playlist operations. We have functions to create, rename, and delete playlists. We also have functions to view songs in a playlist, add  and remove to/from a playlist. All these functions send a fetch request to the server to carry out such operations.
 
 `global.css` has the CSS code that is used across all pages for MelodyLounge.
