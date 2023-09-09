@@ -34,8 +34,8 @@ def log_in_user(request):
             login(request, user)
             return HttpResponseRedirect(reverse("index"))
         else:
-            return render(request, "network/login.html", {
-                "message": "Invalid login credentials."
+            return render(request, "melodylounge/login.html", {
+                "message": "Those login credentials weren't valid!"
             })
     else:
         return render(request, "melodylounge/login.html")
@@ -50,15 +50,15 @@ def register(request):
 
         if password != confirm_password: 
             return render(request, "melodylounge/register.html", {
-                "Make sure the password and the confirmation match!"
+                "message": "Make sure the password and the confirmation match!"
             })
         
         try:
             user = User.objects.create_user(username, email, password)
             user.save()
         except IntegrityError:
-            return render(request, "network/register.html", {
-                "message": "Username already taken."
+            return render(request, "melodylounge/register.html", {
+                "message": "Sorry, that username is already taken!"
             })
         login(request, user)
         return HttpResponseRedirect(reverse("index"))

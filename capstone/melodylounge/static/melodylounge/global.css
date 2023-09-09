@@ -169,7 +169,7 @@ input[type="text"], input[type="password"], input[type="email"] {
     opacity: 0.5;
 }
 
-input[type="submit"]:hover, input[type="text"]:focus, input[type="password"]:focus, input[type="email"]:hover, input[type="file"]::-webkit-file-upload-button:hover {
+input[type="submit"]:hover, input[type="text"]:focus, input[type="password"]:focus, input[type="email"]:focus, input[type="file"]::-webkit-file-upload-button:hover {
     opacity: .9;
     cursor: pointer;
 }

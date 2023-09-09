@@ -6,7 +6,7 @@
     <h2 class="text-center">Log in to <span style="font-family: 'JetBrains Mono', sans-serif;">MelodyLounge</span></h2> <br>
 
     {% if message %}
-        <div>{{ message }}</div>
+        <div class="text-center mb-3">{{ message }}</div>
     {% endif %}
 
     <form action="{% url 'login' %}" method="post">
