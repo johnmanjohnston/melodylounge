@@ -221,3 +221,14 @@ input[type="submit"]:hover, input[type="text"]:focus, input[type="password"]:foc
 }
 
 .almost-transparent { opacity: 0.7; }
+
+
+.slide-up {
+    animation: slide-up-animation .2s cubic-bezier(.17,.67,.67,1.18);
+}
+
+
+@keyframes slide-up-animation {
+  0% { transform: translateY(5px); }
+  100% { transform: translateY(0);  }
+}

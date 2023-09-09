@@ -27,6 +27,7 @@ function showTab(tabName) {
     });
 
     document.querySelector(`#${tabName}`).style.display = "block";
+    document.querySelector(`#${tabName}`).classList.add("slide-up");
 }
 
 hideAllTabs();
