@@ -16,8 +16,6 @@ class User(AbstractUser):
     # - "title": string
     # - "explicit": bool
 
-    # Song file path will be settings.MEDIA_ROOT + "songs/" + the ID of the instance of the song just created
-
 class Song(models.Model):
     author = models.ForeignKey(User, models.CASCADE)
     title = models.CharField(max_length=64)
@@ -25,7 +23,6 @@ class Song(models.Model):
 
     def delete(self, *args, **kwargs):
         os.remove(settings.SONG_DESTINATION_DIR + str(self.id) + ".wav")
-        # TODO: refactor with fstrings. test this out later: os.remove(f"{settings.SONG_DESTINATION_DIR}{self.id}.wav")
         return super().delete(*args, **kwargs)
     
     def serialize(self):

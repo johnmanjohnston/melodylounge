@@ -72,6 +72,7 @@ audio::-webkit-media-controls-play-button {
     margin-top: 0.25em;
     font-size: 1.2em;
     position: relative;
+    height: 3em;
 }
 
 #songs-display {
@@ -114,7 +115,7 @@ audio::-webkit-media-controls-play-button {
     position: absolute;
     right: 45px;
 
-    transform: translateY(calc(-75% - 4px));
+    transform: translateY(calc(-75% - 7px));
 }
 
 .remove-from-playlist-btn {
