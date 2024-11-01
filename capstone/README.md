@@ -1,7 +1,7 @@
 # MelodyLounge -- CS50W Final Project
 
 # About
-MelodyLounge is a music streaming platform, similar to Spotify, Apple Music, etc. 
+MelodyLounge is a music playback platform, similar to Spotify, Apple Music, etc. 
 MelodyLounge is also completely mobile responsive. The main features of MelodyLounge is included as a single page application,
 which makes the application run blazingly fast as you do not have to load an entirely new page any time you switch tabs in MelodyLounge.
 
